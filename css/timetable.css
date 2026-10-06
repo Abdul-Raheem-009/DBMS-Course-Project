@@ -1,0 +1,320 @@
+/* ==========================================================================
+   TIMETABLE GRID & INTERACTION STYLESHEET
+   ========================================================================== */
+
+.timetable-wrapper {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.timetable-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.timetable-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.view-mode-tabs {
+  display: flex;
+  background-color: var(--bg-tertiary);
+  padding: 4px;
+  border-radius: var(--radius-md);
+  gap: 4px;
+}
+
+.tab-btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.tab-btn.active {
+  background-color: var(--bg-secondary);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Timetable Matrix Grid */
+.timetable-grid-container {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background-color: var(--bg-primary);
+}
+
+.timetable-grid {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.timetable-grid th,
+.timetable-grid td {
+  border: 1px solid var(--border-color);
+  text-align: center;
+  vertical-align: top;
+  padding: 8px;
+  position: relative;
+}
+
+.timetable-grid th {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 12px 8px;
+}
+
+.timetable-grid th.time-col-header {
+  width: 110px;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.timetable-grid td.time-cell {
+  background-color: var(--bg-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  vertical-align: middle;
+  padding: 14px 6px;
+  white-space: nowrap;
+}
+
+.timetable-grid td.slot-cell {
+  background-color: var(--bg-secondary);
+  min-height: 95px;
+  height: 95px;
+  transition: var(--transition);
+}
+
+.timetable-grid td.slot-cell:hover {
+  background-color: rgba(37, 99, 235, 0.03);
+}
+
+/* Lunch Break Row */
+.timetable-grid tr.lunch-row td {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--bg-tertiary),
+    var(--bg-tertiary) 10px,
+    var(--bg-primary) 10px,
+    var(--bg-primary) 20px
+  );
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+/* Class Slot Card Inside Cell */
+.class-card {
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  text-align: left;
+  border-left: 4px solid var(--primary);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.class-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.class-card.lab-card {
+  border-left-color: var(--accent-purple);
+  background: linear-gradient(135deg, var(--bg-secondary) 85%, rgba(124, 58, 237, 0.08));
+}
+
+.class-card.theory-card {
+  border-left-color: var(--primary);
+  background: linear-gradient(135deg, var(--bg-secondary) 85%, rgba(37, 99, 235, 0.08));
+}
+
+.class-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.class-code {
+  font-weight: 800;
+  font-size: 0.84rem;
+  color: var(--text-primary);
+}
+
+.class-type-badge {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.class-title {
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.class-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 4px;
+  margin-top: 2px;
+}
+
+.class-faculty {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 105px;
+}
+
+.class-room-badge {
+  font-size: 0.68rem;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-border);
+}
+
+/* Slot Add Button (Hover Trigger on Empty Cells) */
+.slot-empty-trigger {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  background: transparent;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.78rem;
+  font-weight: 600;
+  gap: 4px;
+}
+
+.slot-cell:hover .slot-empty-trigger {
+  opacity: 1;
+  background-color: var(--bg-tertiary);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Conflict Indicator on Card */
+.class-card.has-conflict {
+  border-left-color: var(--danger) !important;
+  animation: pulse-border 1.5s infinite;
+  background-color: var(--danger-bg);
+}
+
+@keyframes pulse-border {
+  0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.conflict-tag {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: var(--danger);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Card Action Hover Buttons */
+.card-actions-hover {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: none;
+  gap: 4px;
+  background-color: var(--bg-secondary);
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.class-card:hover .card-actions-hover {
+  display: flex;
+}
+
+.card-action-mini {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 0.72rem;
+  border-radius: 3px;
+}
+
+.card-action-mini:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+.card-action-mini.delete:hover {
+  color: var(--danger);
+}
